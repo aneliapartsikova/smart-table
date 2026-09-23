@@ -7,10 +7,15 @@ import {initData} from "./data.js";
 import {processFormData} from "./lib/utils.js";
 
 import {initTable} from "./components/table.js";
+<<<<<<< HEAD
 import {initPagination} from "./components/pagination.js";
 import {initSorting} from "./components/sorting.js";
 import {initFiltering} from "./components/filtering.js";
 import {initSearching} from "./components/searching.js";
+=======
+// @todo: подключение
+
+>>>>>>> 461801aa1e804b808c5d3866f44559460f915f0d
 
 // Исходные данные используемые в render()
 const {data, ...indexes} = initData(sourceData);
@@ -21,6 +26,7 @@ const {data, ...indexes} = initData(sourceData);
  */
 function collectState() {
     const state = processFormData(new FormData(sampleTable.container));
+<<<<<<< HEAD
     const rowsPerPage = parseInt(state.rowsPerPage);
     const page = parseInt(state.page ?? 1);
 
@@ -28,6 +34,11 @@ function collectState() {
         ...state,
         rowsPerPage,
         page
+=======
+
+    return {
+        ...state
+>>>>>>> 461801aa1e804b808c5d3866f44559460f915f0d
     };
 }
 
@@ -36,6 +47,7 @@ function collectState() {
  * @param {HTMLButtonElement?} action
  */
 function render(action) {
+<<<<<<< HEAD
     let state = collectState();
     let result = [...data];
 
@@ -45,11 +57,20 @@ function render(action) {
     result = applyPagination(result, state, action);
 
     sampleTable.render(result);
+=======
+    let state = collectState(); // состояние полей из таблицы
+    let result = [...data]; // копируем для последующего изменения
+    // @todo: использование
+
+
+    sampleTable.render(result)
+>>>>>>> 461801aa1e804b808c5d3866f44559460f915f0d
 }
 
 const sampleTable = initTable({
     tableTemplate: 'table',
     rowTemplate: 'row',
+<<<<<<< HEAD
     before: ['search', 'header', 'filter'],
     after: ['pagination'],
 }, (action) => {
@@ -78,8 +99,20 @@ const applyFiltering = initFiltering(sampleTable.filter.elements, {
 });
 
 const applySearching = initSearching('search');
+=======
+    before: [],
+    after: []
+}, render);
+
+// @todo: инициализация
+
+>>>>>>> 461801aa1e804b808c5d3866f44559460f915f0d
 
 const appRoot = document.querySelector('#app');
 appRoot.appendChild(sampleTable.container);
 
+<<<<<<< HEAD
 render();
+=======
+render();
+>>>>>>> 461801aa1e804b808c5d3866f44559460f915f0d
